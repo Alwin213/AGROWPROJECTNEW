@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const LandlordDashboard = () => {
@@ -63,13 +63,30 @@ const LandlordDashboard = () => {
       submittedAt: new Date().toISOString(),
     };
 
-    const existing = JSON.parse(localStorage.getItem("submittedProperties")) || [];
+    const existing =
+      JSON.parse(localStorage.getItem("submittedProperties")) || [];
     const updated = [...existing, newEntry];
 
     localStorage.setItem("submittedProperties", JSON.stringify(updated));
 
     toast.success("✅ Property submitted successfully!");
+
+    // 🔹 Reset form after successful submission
+    setForm({
+      name: "",
+      propertyType: "",
+      purpose: "",
+      contact: "",
+      location: "",
+      price: "",
+      area: "",
+      photos: null,
+      agreed: false,
+    });
+
+    // Example: redirect after short delay if needed
     setTimeout(() => {
+      // navigate("/somewhere");
     }, 1500);
   };
 
